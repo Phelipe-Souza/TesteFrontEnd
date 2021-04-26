@@ -2,50 +2,68 @@
 
 <table class="table mt-5 mb-5">
     <thead class="thead" style="background-color:#ec7000fd">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Primeiro</th>
-        <th scope="col">Último</th>
-        <th scope="col">Nickname</th>
+      <tr class="text-white">
+        <th scope="col-">#</th>
+        <th scope="col">Nome do Produto</th>
+        <th scope="col">Categoria</th>  
+        <th scope="col">Preço</th>  
+        <th scope="col">Ações</th>   
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+      <tr *ngFor="let produto of produtos">
+        <th>{{produto.id}}</th>
+        <td>{{produto.nome}}</td>
+        <td>{{produto.categoria}}</td>  
+        <td>{{produto.preco}}</td> 
+        <td ><button class="text-white mr-1" style="background-color:#ec7000fd" (click)="remover(produto.id)">Remover </button>
+          <button class="text-white ml-1" style="background-color:#ec7000fd" (click)="atualizar(produto.id)">Atualizar </button>
+        </td>      
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
+       
+     
     </tbody>
   </table>
 </div>
 
 <div class="container-fluid mb-3 ">
   <div class="col-md-12 d-flex justify-content-center">
-  <button type="button" class="btn btn-lg "style="background-color:#ec7000fd" routerLink="/cadastrar">Cadastrar Produto</button>
+  <button type="button" class="btn btn-lg text-white" style="background-color:#ec7000fd" routerLink="/cadastrar">Cadastrar</button>
 </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid mb-3">
+  <div class="row">
+      <div class="col-md-6 mt-4 mb-4">
+          <div class="row d-flex justify-content-center">
+              <div>
+                <thead class="thead text-white" style="background-color:#ec7000fd">
+                  <h1 class="text-center">Insira dados para Atualização</h1>
+                </thead>
+
+                  <div class="form-group">
+                      <label for="produto"> Nome do Produto</label>
+                      <input [(ngModel)]='produto.nome' class="form-control" type="text" name="produto" placeholder="Nome do Produto">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="produto"> Categoria do Produto</label>
+                      <input [(ngModel)]='produto.categoria' class="form-control" type="text" name="categoria"  placeholder="Ex: Eletrônico">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="produto"> Preço do Produto</label>
+                      <input [(ngModel)]='produto.preco' class="form-control" type="text" name="preco"  placeholder="R$ Preço">
+                  </div>                                               
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="container-fluid mb-3">
   <div class="col-md-12 d-flex justify-content-center">
-  <button type="button" class="btn btn-lg"style="background-color:#ec7000fd" routerLink="/menu">Voltar</button>
+  <button type="button" class="btn btn-lg text-white"style="background-color:#ec7000fd" routerLink="/menu">Voltar</button>
 </div>
 </div>

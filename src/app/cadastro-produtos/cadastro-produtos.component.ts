@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProdutosService } from '../produtos.service';
+import { ProdutoModel } from '../produtos/produto.model';
 
 @Component({
   selector: 'app-cadastro-produtos',
@@ -7,9 +9,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroProdutosComponent implements OnInit {
 
-  constructor() { }
+  produto: ProdutoModel = new ProdutoModel();
+  produtos: Array<any> = new Array();
 
-  ngOnInit(): void {
+  constructor(public produtosService: ProdutosService) { }
+
+  ngOnInit(){
   }
+  listarProdutos(){
+    this.produtosService.listarProdutos() .subscribe (produtos => {
+      this.produtos = produtos
+    }, err => {
+      console.log('Erro ao Buscar Produtos', err);
+    })
+ }
+
+  cadastrar() {
+    console.log(this.produto);
+    this.produtosService.cadastrarProdutos(this.produto).subscribe(produto => {
+      this.produto = new ProdutoModel();
+      this.listarProdutos();
+    }, err => { console.log('Erro ao Cadastrar Produto') }
+    )
+  }
+
+  atualizar(id: number){
+    this.produtosService.atualizarProdutos(id, this.produto).subscribe(produto => {
+    this.produto = new ProdutoModel();
+    this.listarProdutos();
+  }, err => { console.log('Erro ao Atualizar Produto') }
+  )
+}
 
 }
